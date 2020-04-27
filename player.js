@@ -12,6 +12,8 @@
 //Chosen Action
 //Dummy
 
+var players = [];
+
 function newPlayer(playerNum)
 {
 	var randomLetterFromPlayerNum = randomLetterIndexes[playerNum]; //Give each player a distinct random letter

@@ -18,6 +18,52 @@ function randomlyIndexLetters()
 	shuffle(randomLetterIndexes);
 }
 
+function setupGame()
+{
+	$('#setupDiv').addClass('invisible');
+	$('#playernamesDiv').removeClass('invisible');
+		
+	var numPlayers = $('#numPlayersInput').val();
+	var numPlayersHTML = "";
+	for (let i = 0; i < numPlayers; i++)
+	{
+		numPlayersHTML += "<label for='p" + i + "Name'>Player " + i + " Name: </label>";
+		numPlayersHTML += "<input type='text' name='p" + i + "Name' id='p" + i + "nameInput'></input>";
+		numPlayersHTML += "<br/>";
+		players.push(["Player " + i, newPlayer(i)]);
+	}
+	$('#playernamesDiv').html(numPlayersHTML + $('#playernamesDiv').html());
+	for (let i = 0; i < numPlayers; i++)
+	{
+		$('#p' + i + 'nameInput').val(players[i][0]);
+	}
+}
+
+function setupNames()
+{
+	for (let i = 0; i < players.length; i++)
+	{
+		players[i][0] = $('#p' + i + 'nameInput').val();
+	}
+	$('#playernamesDiv').addClass('invisible');
+	$('#gameTurnDiv').removeClass('invisible');
+	setupTurn();
+}
+
+function setupTurn()
+{
+	var turnHTML = "";
+	for (let i = 0; i < players.length; i++)
+	{
+		var playerCode = generatePlayerString_Out(players[i][1]);
+		turnHTML += "<label for='p" + i + "TurnCode'>" + players[i][0] + " - " + playerCode + " </label>";
+		turnHTML += "<input type='text' name='p" + i + "TurnCode' id='p" + i + "TurnCodeInput'></input>";
+		turnHTML += "<br/>";
+	}
+	turnHTML += "<button id='submitTurnButton' onclick='submitTurn()'>Submit</button>";
+	$('#gameTurnDiv').html(turnHTML);
+}
+
 //From: https://javascript.info/task/shuffle
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
