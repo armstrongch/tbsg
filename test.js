@@ -37,3 +37,22 @@ function testPlayerString()
 	var playerString = generatePlayerString_Out(player_in);
 	readPlayerString_Out(playerString);
 }
+
+function testActionString()
+{
+	for (let i = 0; i < actionNames.length; i++)
+	{
+		var actionString_in = generateTurnString_Out(actionNames[i]);
+		var actionString_out = readTurnString_Out(actionString_in);
+		if (actionString_out != actionNames[i])
+		{
+			console.log("Nope! " + actionNames[i] + " / "+ actionString_out);
+			break;
+		}
+		else
+		{
+			console.log("Action String: " + actionString_in);
+			console.log("Yup! " + actionNames[i] + " / "+ actionString_out);
+		}
+	}
+}

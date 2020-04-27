@@ -4,7 +4,7 @@ var roles = [
 	"RoleThree",
 	"RoleFour",
 	"RoleFive",
-	"RoleSize",
+	"RoleSix",
 	"RoleSeven",
 	"RoleEight",
 	"RoleNine",

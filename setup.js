@@ -5,6 +5,7 @@ function loadSetup()
 {
 	$('#numPlayersInput').val(2);
 	randomlyIndexLetters();
+	setupActionNames();
 }
 
 function randomlyIndexLetters()
@@ -30,7 +31,7 @@ function setupGame()
 		numPlayersHTML += "<label for='p" + i + "Name'>Player " + i + " Name: </label>";
 		numPlayersHTML += "<input type='text' name='p" + i + "Name' id='p" + i + "nameInput'></input>";
 		numPlayersHTML += "<br/>";
-		players.push(["Player " + i, newPlayer(i)]);
+		players.push(["Player " + i, newPlayer(i), "Forest"]);
 	}
 	$('#playernamesDiv').html(numPlayersHTML + $('#playernamesDiv').html());
 	for (let i = 0; i < numPlayers; i++)
@@ -46,8 +47,45 @@ function setupNames()
 		players[i][0] = $('#p' + i + 'nameInput').val();
 	}
 	$('#playernamesDiv').addClass('invisible');
+	$('#gameStatusDiv').removeClass('invisible');
 	$('#gameTurnDiv').removeClass('invisible');
 	setupTurn();
+}
+
+function printStatus()
+{
+	var statusHTML = "";
+	for (let i = 0; i < locationNames.length; i++)
+	{
+		statusHTML += "<strong>" + locationNames[i] + ":</strong><br/>";
+		statusHTML += locationDescriptions[i] + "<br/>";
+		statusHTML += "Occupants: ";
+		var occupants = [];
+		for (let j = 0; j < players.length; j++)
+		{
+			if (players[j][2] == locationNames[i])
+			{
+				occupants.push(players[j][0]);
+			}
+		}
+		if (occupants.length == 0)
+		{
+			statusHTML += "None";
+		}
+		else
+		{
+			for (let j = 0; j < occupants.length; j++)
+			{
+				statusHTML += occupants[j];
+				if (j < occupants.length - 1)
+				{
+					statusHTML += ", ";
+				}
+			}
+		}
+		statusHTML += "<br/><br/>";
+	}
+	$('#gameStatusDiv').html(statusHTML);
 }
 
 function setupTurn()
@@ -62,6 +100,7 @@ function setupTurn()
 	}
 	turnHTML += "<button id='submitTurnButton' onclick='submitTurn()'>Submit</button>";
 	$('#gameTurnDiv').html(turnHTML);
+	printStatus();
 }
 
 //From: https://javascript.info/task/shuffle

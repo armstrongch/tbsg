@@ -40,7 +40,7 @@ function charToNum(char)
 function generatePlayerString_Out(player)
 {
 	var randInt = Math.floor(Math.random()*26);
-	var randIntChar = letterIndexes[randInt];
+	var randIntChar = numToChar(randInt);
 	
 	//Health: 0 - 3
 	//Ammo: 0 - 4
