@@ -1,24 +1,4 @@
-//Actions (in priority order)
-/*
-	Avoid getting Shot or Slapped.
-	
-	Slap anyone who tries to Rob you (Deals 1 Damage)
-	
-	Shoot Player in Location with MOST Gold (Costs 1 Ammo, Deals 2 Damage)
-	Shoot Player in Location with LEAST Health (Costs 1 Ammo, Deals 2 Damage)
-
-	Slap Player in Location with MOST Gold (Deals 1 Damage)
-	Slap Player in Location with LEAST Health (Deals 1 Damage)
-
-	Steal 1 Gold from ALL Players in Location
-	Steal 1 Ammo from ALL Players in Location
-	
-	Use Location Action
-	
-	Move to different Location
-*/
-
-var initialActionNames =
+var initialActionNames = //In Prioritized Order
 [
 	"Duck",
 	"Defend",
@@ -50,55 +30,46 @@ var actions =
 	Duck: {
 		Name: "Duck and Hide",
 		Description: "Avoid getting Shot or Slapped.",
-		CostsAmmo: false,
-		Priority: 0
+		CostsAmmo: false
 	},
 	Defend: {
 		Name: "Self-Defense",
 		Description: "Slap any Player who tries to Rob you (Deals 1 Damage)",
-		CostsAmmo: false,
-		Priority: 1
+		CostsAmmo: false
 	},
 	ShootGold: {
 		Name: "Shoot the Rich",
 		Description: "Shoot the Player in your Location with MOST Gold (Costs 1 Ammo, Deals 2 Damage)",
-		CostsAmmo: true,
-		Priority: 2
+		CostsAmmo: true
 	},
 	ShootHealth: {
 		Name: "Shoot the Weak",
 		Description: "Shoot the Player in your Location with LEAST Health (Costs 1 Ammo, Deals 2 Damage)",
-		CostsAmmo: true,
-		Priority: 3
+		CostsAmmo: true
 	},
 	SlapGold: {
 		Name: "Slap the Rich",
 		Description: "Slap the Player in your Location with MOST Gold (Deals 1 Damage)",
-		CostsAmmo: false,
-		Priority: 4
+		CostsAmmo: false
 	},
 	SlapHealth: {
 		Name: "Slap the Weak",
 		Description: "Slap the Player in your Location with LEAST Health (Deals 1 Damage)",
-		CostsAmmo: false,
-		Priority: 5
+		CostsAmmo: false
 	},
 	StealGold: {
 		Name: "Steal Gold",
 		Description: "Steal 1 Gold from ALL Players in your Location",
-		CostsAmmo: false,
-		Priority: 6
+		CostsAmmo: false
 	},
 	StealAmmo: {
 		Name: "Steal Bullets",
 		Description: "Steal 1 Ammo from ALL Players in your Location",
-		CostsAmmo: false,
-		Priority: 7
+		CostsAmmo: false
 	},
 	LocationAction: {
 		Name: "Location Action",
 		Description: "Take the Action specific to your current Location",
-		CostsAmmo: false,
-		Priority: 8
+		CostsAmmo: false
 	},
 }

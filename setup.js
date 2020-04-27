@@ -98,9 +98,44 @@ function setupTurn()
 		turnHTML += "<input type='text' name='p" + i + "TurnCode' id='p" + i + "TurnCodeInput'></input>";
 		turnHTML += "<br/>";
 	}
-	turnHTML += "<button id='submitTurnButton' onclick='submitTurn()'>Submit</button>";
+	turnHTML += "<button id='submitTurnButton' onclick='submitTurn()'>Submit</button><p style='color:red' id='invalidP'></p>";
 	$('#gameTurnDiv').html(turnHTML);
 	printStatus();
+}
+
+function submitTurn()
+{
+	var allCodesValid = true;
+	var turns = [];
+	for (let i = 0; i < players.length; i++)
+	{
+		allCodesValid = validInput($('#p' + i + 'TurnCodeInput').val());
+		if (allCodesValid)
+		{
+			turns.push({playerIndex: i, actionName: readTurnString_Out($('#p' + i + 'TurnCodeInput').val())});
+		}
+	}
+	if (allCodesValid)
+	{
+		var resltsHTML = "";
+		for (let i = 0; i < actionNames.length; i++)
+		{
+			for (let j = 0; j < turns.length; j++)
+			{
+				if (turns[j].actionName == actionNames[i])
+				{
+					resltsHTML += "<p>" + takeAction(turns[j]) + "</p>";
+				}
+			}
+		}
+		$('#gameStatusDiv').html("");
+		$('#gameTurnDiv').html(resltsHTML);
+	}
+}
+
+function takeAction(turnArrayEntry)
+{
+	return players[turnArrayEntry.playerIndex][0] + " took an action.";
 }
 
 //From: https://javascript.info/task/shuffle

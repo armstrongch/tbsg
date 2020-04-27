@@ -53,7 +53,7 @@ function showActions()
 		{
 			var destination = actionNames[i].substring(4);
 			actionHTML += "<p>"
-			actionHTML += "<button onclick='takeAction(" + actionNames[i] + ")'> Travel to " + destination + "</button>:";
+			actionHTML += "<button onclick='generateActionCode(" + actionNames[i] + ")'> Travel to " + destination + "</button>:";
 			actionHTML += "Travel to " + destination;
 			actionHTML += "</p>"
 		}
@@ -63,7 +63,7 @@ function showActions()
 			if ((currentPlayer.ammo > 0) || (!action.CostsAmmo))
 			{
 				actionHTML += "<p>"
-				actionHTML += "<button onclick='takeAction(\"" + actionNames[i] + "\")'>" + action.Name + "</button>:";
+				actionHTML += "<button onclick='generateActionCode(\"" + actionNames[i] + "\")'>" + action.Name + "</button>:";
 				actionHTML += action.Description;
 				actionHTML += "</p>"
 			}
@@ -118,7 +118,7 @@ function readTurnString_Out(turnString)
 	return actionNames[actionInt];
 }
 
-function takeAction(actionName)
+function generateActionCode(actionName)
 {
 	$('#turnDiv').addClass('invisible');
 	$('#turnOverDiv').removeClass('invisible');
